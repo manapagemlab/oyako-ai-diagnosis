@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>親子ワクワクAI診断</title>
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #fff8f0;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #ff8aa1;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .answers button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #ffd9e0;
+      color: #333;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .answers button:hover {
+      background: #ffb8c6;
+    }
+    #result {
+      margin-top: 30px;
+      font-size: 20px;
+      color: #444;
+    }
+    .line-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #00c300;
+      color: white;
+      font-size: 18px;
+      border-radius: 30px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌟 親子ワクワクAI診断 🌟</h1>
+  <div id="quiz"></div>
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      {
+        q: "自由時間、いちばん楽しいのは？",
+        a: ["A", "B", "C", "D"],
+        t: ["お話を考える📖", "図や表をまとめる📊", "なりきりあそび🎭", "絵や音で表現する🎨"]
+      },
+      {
+        q: "ほめられるとうれしいのは？",
+        a: ["A", "B", "C", "D"],
+        t: ["アイデアがすごいね！", "丁寧で分かりやすいね", "発表すごく上手だったね！", "色づかいや表現がきれい！"]
+      },
+      {
+        q: "好きな授業は？",
+        a: ["A", "B", "C", "D"],
+        t: ["国語・作文・創作", "理科・自由研究", "音読・発表・演劇", "美術・音楽"]
+      },
+      {
+        q: "気になる言葉は？",
+        a: ["A", "B", "C", "D"],
+        t: ["ひらめき💡", "じっくり🔍", "なりきり🎤", "感じる🌈"]
+      },
+      {
+        q: "もしAIと遊べるなら？",
+        a: ["A", "B", "C", "D"],
+        t: ["お話を一緒に作りたい", "調べ物を手伝ってもらいたい", "動画を一緒につくりたい", "絵や音楽を一緒に作りたい"]
+      },
+      {
+        q: "好きな遊び方は？",
+        a: ["A", "B", "C", "D"],
+        t: ["ごっこ遊びのストーリー作り", "観察してメモをとる", "発表やショータイム", "カラフルに塗る・音を出す"]
+      },
+      {
+        q: "やってみたい！と思うのは？",
+        a: ["A", "B", "C", "D"],
+        t: ["AIで自分の話をつくる", "AIで自由研究まとめ", "AIで動画づくり", "AIで絵や色を作って遊ぶ"]
+      },
+      {
+        q: "友達に言われたい言葉は？",
+        a: ["A", "B", "C", "D"],
+        t: ["ストーリーが面白い！", "知ってて物知り！", "発表が最高！", "絵がステキ！"]
+      }
+    ];
+
+    let current = 0;
+    const scores = { A: 0, B: 0, C: 0, D: 0 };
+    const quiz = document.getElementById("quiz");
+    const result = document.getElementById("result");
+
+    function showQuestion() {
+      const q = questions[current];
+      quiz.innerHTML = `<div class='question'><h3>Q${current + 1}. ${q.q}</h3><div class='answers'>${q.t.map((text, i) => `<button onclick='answer("${q.a[i]}")'>${text}</button>`).join("")}</div></div>`;
+    }
+
+    function answer(type) {
+      scores[type]++;
+      current++;
+      if (current < questions.length) {
+        showQuestion();
+      } else {
+        const resultType = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+        const typeLabels = {
+          A: "モコモコタイプ（発想クリエイター）",
+          B: "コツコツタイプ（観察マスター）",
+          C: "ワクワクタイプ（表現チャレンジャー）",
+          D: "キラキラタイプ（感覚アーティスト）"
+        };
+        const messages = {
+          A: "想像力が豊かで、ひらめきやお話づくりが大好きなタイプ！",
+          B: "じっくり集中して、まとめるのが得意なタイプ！",
+          C: "なりきったり発表したり、表現が得意なタイプ！",
+          D: "感性が鋭く、色や音で表現するのが好きなタイプ！"
+        };
+        quiz.innerHTML = "";
+        result.innerHTML = `<p>🎉 あなたは <strong>${typeLabels[resultType]}</strong>！</p>
+          <p>${messages[resultType]}</p>
+          <p>詳しい診断結果はLINEで「<strong>${resultType}</strong>」と送ってね！</p>
+          <a href='https://lin.ee/pm64uW8' class='line-btn' target='_blank'>LINEで結果を受け取る</a>`;
+      }
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
