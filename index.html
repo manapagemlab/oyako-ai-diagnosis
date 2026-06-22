@@ -3,138 +3,314 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>親子ワクワクAI診断</title>
+  <title>親子ワクワクAI診断 - お子さんの才能を発見しよう</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Noto Sans JP', sans-serif;
-      background: #fff8f0;
+      background: linear-gradient(135deg, #fff8f0 0%, #fffbf5 100%);
       color: #333;
+    }
+    header {
+      background: linear-gradient(90deg, #0ea5a3, #fb7185);
+      color: white;
+      padding: 20px;
       text-align: center;
+    }
+    header h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    header p {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
       padding: 20px;
     }
-    h1 {
-      color: #ff8aa1;
+    .hero {
+      margin: 30px 0;
+      text-align: center;
     }
-    .question {
+    .hero img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    section {
+      margin: 40px 0;
+      padding: 25px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    section h2 {
+      color: #0ea5a3;
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      border-bottom: 3px solid #fb7185;
+      padding-bottom: 15px;
+    }
+    .problems {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
       margin: 20px 0;
     }
-    .answers button {
-      margin: 5px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 20px;
-      background: #ffd9e0;
-      color: #333;
+    .problem-item {
+      background: #fff0f5;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 14px;
+      text-align: center;
+      border-left: 4px solid #fb7185;
+    }
+    .problem-item strong {
+      color: #fb7185;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .types-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .type-card {
+      background: linear-gradient(135deg, #f0f9ff 0%, #fff0f5 100%);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      border: 2px solid #ddd;
+      transition: all 0.3s;
+    }
+    .type-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border-color: #0ea5a3;
+    }
+    .type-emoji {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+    .type-name {
+      font-weight: bold;
+      color: #0ea5a3;
       font-size: 16px;
-      cursor: pointer;
+      margin-bottom: 8px;
     }
-    .answers button:hover {
-      background: #ffb8c6;
+    .type-desc {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.5;
     }
-    #result {
-      margin-top: 30px;
-      font-size: 20px;
-      color: #444;
+    .features {
+      list-style: none;
+      margin: 20px 0;
     }
-    .line-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #00c300;
-      color: white;
+    .features li {
+      padding: 12px 0;
+      padding-left: 35px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.6;
+      border-bottom: 1px solid #eee;
+    }
+    .features li:last-child {
+      border-bottom: none;
+    }
+    .features li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #fb7185;
+      font-weight: bold;
       font-size: 18px;
+    }
+    .cta {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(90deg, #0ea5a3, #fb7185);
+      color: white;
+      padding: 18px 40px;
       border-radius: 30px;
       text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(254, 107, 133, 0.3);
+    }
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(254, 107, 133, 0.4);
+    }
+    .about {
+      background: linear-gradient(135deg, #f0f9ff 0%, #fff0f5 100%);
+      padding: 25px;
+      border-radius: 15px;
+      margin: 30px 0;
+    }
+    .about h3 {
+      color: #0ea5a3;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    .about p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    footer {
+      background: #f9f9f9;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 12px;
+      color: #999;
+      border-top: 1px solid #eee;
+    }
+    @media (max-width: 600px) {
+      .problems, .types-grid {
+        grid-template-columns: 1fr;
+      }
+      header h1 {
+        font-size: 22px;
+      }
+      section h2 {
+        font-size: 20px;
+      }
+      .cta-button {
+        padding: 15px 30px;
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>🌟 親子ワクワクAI診断 🌟</h1>
-  <div id="quiz"></div>
-  <div id="result"></div>
+  <header>
+    <h1>🌟 親子ワクワクAI診断 🌟</h1>
+    <p>違いをカラフルに才能に変える</p>
+  </header>
 
-  <script>
-    const questions = [
-      {
-        q: "自由時間、いちばん楽しいのは？",
-        a: ["A", "B", "C", "D"],
-        t: ["お話を考える📖", "図や表をまとめる📊", "なりきりあそび🎭", "絵や音で表現する🎨"]
-      },
-      {
-        q: "ほめられるとうれしいのは？",
-        a: ["A", "B", "C", "D"],
-        t: ["アイデアがすごいね！", "丁寧で分かりやすいね", "発表すごく上手だったね！", "色づかいや表現がきれい！"]
-      },
-      {
-        q: "好きな授業は？",
-        a: ["A", "B", "C", "D"],
-        t: ["国語・作文・創作", "理科・自由研究", "音読・発表・演劇", "美術・音楽"]
-      },
-      {
-        q: "気になる言葉は？",
-        a: ["A", "B", "C", "D"],
-        t: ["ひらめき💡", "じっくり🔍", "なりきり🎤", "感じる🌈"]
-      },
-      {
-        q: "もしAIと遊べるなら？",
-        a: ["A", "B", "C", "D"],
-        t: ["お話を一緒に作りたい", "調べ物を手伝ってもらいたい", "動画を一緒につくりたい", "絵や音楽を一緒に作りたい"]
-      },
-      {
-        q: "好きな遊び方は？",
-        a: ["A", "B", "C", "D"],
-        t: ["ごっこ遊びのストーリー作り", "観察してメモをとる", "発表やショータイム", "カラフルに塗る・音を出す"]
-      },
-      {
-        q: "やってみたい！と思うのは？",
-        a: ["A", "B", "C", "D"],
-        t: ["AIで自分の話をつくる", "AIで自由研究まとめ", "AIで動画づくり", "AIで絵や色を作って遊ぶ"]
-      },
-      {
-        q: "友達に言われたい言葉は？",
-        a: ["A", "B", "C", "D"],
-        t: ["ストーリーが面白い！", "知ってて物知り！", "発表が最高！", "絵がステキ！"]
-      }
-    ];
+  <div class="container">
+    <div class="hero">
+      <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/ChatGPT_Image_2026%E5%B9%B46%E6%9C%8823%E6%97%A502_14_33.png" alt="親子ワクワクAI診断メインビジュアル" />
+    </div>
 
-    let current = 0;
-    const scores = { A: 0, B: 0, C: 0, D: 0 };
-    const quiz = document.getElementById("quiz");
-    const result = document.getElementById("result");
+    <section>
+      <h2>こんなことありませんか？</h2>
+      <div class="problems">
+        <div class="problem-item">
+          <strong>「うちの子、何が得意なんだろう…」</strong>
+          お子さんの才能が見えにくい
+        </div>
+        <div class="problem-item">
+          <strong>「どう声かけしたらいいの？」</strong>
+          子育てのコツが知りたい
+        </div>
+        <div class="problem-item">
+          <strong>「AIとの関わり、不安…」</strong>
+          デジタルとの付き合い方
+        </div>
+        <div class="problem-item">
+          <strong>「個性を活かしたい」</strong>
+          我が子らしさを大切にしたい
+        </div>
+      </div>
+      <p style="text-align: center; color: #666; margin-top: 20px; font-size: 14px;">
+        そんなお悩みを、このツールで解決します！
+      </p>
+    </section>
 
-    function showQuestion() {
-      const q = questions[current];
-      quiz.innerHTML = `<div class='question'><h3>Q${current + 1}. ${q.q}</h3><div class='answers'>${q.t.map((text, i) => `<button onclick='answer("${q.a[i]}")'>${text}</button>`).join("")}</div></div>`;
-    }
+    <section>
+      <h2>このツールについて</h2>
+      <p style="font-size: 14px; line-height: 1.8; color: #555; margin-bottom: 15px;">
+        「親子ワクワクAI診断」は、お子さんの「好き」や「得意」を発見するための診断ツール。<br><br>
+        8つの質問に答えるだけで、お子さんが持つ4つのタイプのうち、どの才能が強いのかが見える化できます。<br><br>
+        診断後は、のりこおばちゃんからのアドバイスで、そのタイプに合った子育てのコツや、AI活用法を学べます。
+      </p>
+      <ul class="features">
+        <li>8つの質問で、お子さんの「才能タイプ」が分かる</li>
+        <li>複数タイプの場合は、ハイブリッド判定で細かく理解できる</li>
+        <li>診断後、のりこおばちゃんから個別のアドバイスが受け取れる</li>
+        <li>スポーツ・創作・表現など、幅広い才能に対応</li>
+        <li>個人情報は一切収集しません（ブラウザ内で完結）</li>
+      </ul>
+    </section>
 
-    function answer(type) {
-      scores[type]++;
-      current++;
-      if (current < questions.length) {
-        showQuestion();
-      } else {
-        const resultType = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-        const typeLabels = {
-          A: "モコモコタイプ（発想クリエイター）",
-          B: "コツコツタイプ（観察マスター）",
-          C: "ワクワクタイプ（表現チャレンジャー）",
-          D: "キラキラタイプ（感覚アーティスト）"
-        };
-        const messages = {
-          A: "想像力が豊かで、ひらめきやお話づくりが大好きなタイプ！",
-          B: "じっくり集中して、まとめるのが得意なタイプ！",
-          C: "なりきったり発表したり、表現が得意なタイプ！",
-          D: "感性が鋭く、色や音で表現するのが好きなタイプ！"
-        };
-        quiz.innerHTML = "";
-        result.innerHTML = `<p>🎉 あなたは <strong>${typeLabels[resultType]}</strong>！</p>
-          <p>${messages[resultType]}</p>
-          <p>詳しい診断結果はLINEで「<strong>${resultType}</strong>」と送ってね！</p>
-          <a href='https://lin.ee/pm64uW8' class='line-btn' target='_blank'>LINEで結果を受け取る</a>`;
-      }
-    }
+    <section>
+      <h2>4つのタイプ</h2>
+      <div class="types-grid">
+        <div class="type-card">
+          <div class="type-emoji">📖</div>
+          <div class="type-name">モコモコ型</div>
+          <div class="type-desc">発想クリエイター<br>想像力が豊かで、ひらめきやお話づくりが好き</div>
+        </div>
+        <div class="type-card">
+          <div class="type-emoji">📊</div>
+          <div class="type-name">コツコツ型</div>
+          <div class="type-desc">観察マスター<br>じっくり集中して、まとめるのが得意</div>
+        </div>
+        <div class="type-card">
+          <div class="type-emoji">🎤</div>
+          <div class="type-name">ワクワク型</div>
+          <div class="type-desc">表現チャレンジャー<br>なりきったり発表したり、表現が得意</div>
+        </div>
+        <div class="type-card">
+          <div class="type-emoji">🌈</div>
+          <div class="type-name">キラキラ型</div>
+          <div class="type-desc">感覚アーティスト<br>色や音、身体感覚で表現するのが好き</div>
+        </div>
+      </div>
+    </section>
 
-    showQuestion();
-  </script>
+    <div class="about">
+      <h3>💕 のりこおばちゃんについて</h3>
+      <p>
+        発達特性のある子を持つお母さんたちの「子育ての悩み」や「わが子の才能」を、
+        のりこおばちゃんの温かい視点で一緒に整理していきます。
+      </p>
+      <p>
+        関西弁で、押しつけなく、でもちゃんと向き合う。
+        そんなおばちゃんのようなサポーターです。
+      </p>
+    </div>
+
+    <div class="cta">
+      <p style="font-size: 16px; margin-bottom: 20px; color: #333;">
+        さあ、お子さんの才能を発見しよう！
+      </p>
+      <a href="./diagnosis.html" class="cta-button">🎨 診断を始める</a>
+    </div>
+
+    <section>
+      <h2>診断後の流れ</h2>
+      <p style="font-size: 14px; line-height: 1.8; color: #555; margin-bottom: 15px;">
+        1️⃣ 診断ページで8つの質問に答える<br><br>
+        2️⃣ お子さんのタイプが判定される<br><br>
+        3️⃣ LINE公式を友達追加して、タイプを送信<br><br>
+        4️⃣ のりこおばちゃんからアドバイス画像が届く<br><br>
+        5️⃣ OpenChatで詳しく相談・整理ができる
+      </p>
+    </section>
+  </div>
+
+  <footer>
+    <p>© AmeCan. / 親子ワクワクAI診断（β版）</p>
+    <p>このツールはブラウザ内で動作し、個人情報を収集しません</p>
+  </footer>
 </body>
 </html>
