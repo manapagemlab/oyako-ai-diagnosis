@@ -14,102 +14,122 @@
       font-family: 'Noto Sans JP', sans-serif;
       background: linear-gradient(135deg, #fff8f0 0%, #fffbf5 100%);
       color: #333;
+      line-height: 1.6;
     }
     header {
       background: linear-gradient(90deg, #0ea5a3, #fb7185);
       color: white;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     header h1 {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: bold;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
     }
     header p {
-      font-size: 14px;
+      font-size: 16px;
       opacity: 0.95;
+      font-weight: 500;
     }
     .container {
-      max-width: 600px;
+      max-width: 700px;
       margin: 0 auto;
       padding: 20px;
     }
     .hero {
-      margin: 30px 0;
+      margin: 40px 0;
       text-align: center;
     }
     .hero img {
       width: 100%;
-      max-width: 500px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s;
+    }
+    .hero img:hover {
+      transform: scale(1.02);
     }
     section {
-      margin: 40px 0;
-      padding: 25px;
+      margin: 45px 0;
+      padding: 35px;
       background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     }
     section h2 {
       color: #0ea5a3;
-      font-size: 24px;
-      margin-bottom: 20px;
+      font-size: 28px;
+      margin-bottom: 25px;
       text-align: center;
-      border-bottom: 3px solid #fb7185;
+      border-bottom: 4px solid #fb7185;
       padding-bottom: 15px;
+      font-weight: bold;
     }
     .problems {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin: 20px 0;
+      gap: 18px;
+      margin: 25px 0;
     }
     .problem-item {
-      background: #fff0f5;
-      padding: 15px;
-      border-radius: 12px;
+      background: linear-gradient(135deg, #fff0f5 0%, #ffe4ed 100%);
+      padding: 20px;
+      border-radius: 15px;
       font-size: 14px;
       text-align: center;
-      border-left: 4px solid #fb7185;
+      border-left: 5px solid #fb7185;
+      transition: all 0.3s;
+    }
+    .problem-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(251, 113, 133, 0.2);
     }
     .problem-item strong {
       color: #fb7185;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      font-size: 15px;
     }
     .types-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin: 20px 0;
+      gap: 20px;
+      margin: 30px 0;
     }
     .type-card {
       background: linear-gradient(135deg, #f0f9ff 0%, #fff0f5 100%);
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      border: 2px solid #ddd;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 2px solid #e0e0e0;
       transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
     .type-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
       border-color: #0ea5a3;
     }
-    .type-emoji {
-      font-size: 40px;
-      margin-bottom: 10px;
+    .type-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .type-info {
+      padding: 18px;
+      text-align: center;
     }
     .type-name {
       font-weight: bold;
       color: #0ea5a3;
-      font-size: 16px;
+      font-size: 17px;
       margin-bottom: 8px;
     }
     .type-desc {
-      font-size: 12px;
+      font-size: 13px;
       color: #666;
       line-height: 1.5;
     }
@@ -118,83 +138,105 @@
       margin: 20px 0;
     }
     .features li {
-      padding: 12px 0;
-      padding-left: 35px;
+      padding: 14px 0;
+      padding-left: 38px;
       position: relative;
       font-size: 14px;
-      line-height: 1.6;
-      border-bottom: 1px solid #eee;
+      line-height: 1.7;
+      border-bottom: 1px solid #f0f0f0;
+      color: #555;
     }
     .features li:last-child {
       border-bottom: none;
     }
     .features li:before {
-      content: "✓";
+      content: "✨";
       position: absolute;
       left: 0;
-      color: #fb7185;
-      font-weight: bold;
-      font-size: 18px;
+      font-size: 20px;
     }
     .cta {
       text-align: center;
-      margin: 40px 0;
+      margin: 45px 0;
+    }
+    .cta-text {
+      font-size: 18px;
+      margin-bottom: 25px;
+      color: #333;
+      font-weight: 500;
     }
     .cta-button {
       display: inline-block;
       background: linear-gradient(90deg, #0ea5a3, #fb7185);
       color: white;
-      padding: 18px 40px;
-      border-radius: 30px;
+      padding: 20px 45px;
+      border-radius: 35px;
       text-decoration: none;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
       transition: all 0.3s;
-      box-shadow: 0 8px 20px rgba(254, 107, 133, 0.3);
+      box-shadow: 0 10px 30px rgba(254, 107, 133, 0.35);
+      border: none;
+      cursor: pointer;
     }
     .cta-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 30px rgba(254, 107, 133, 0.4);
+      transform: scale(1.06);
+      box-shadow: 0 15px 40px rgba(254, 107, 133, 0.45);
     }
     .about {
       background: linear-gradient(135deg, #f0f9ff 0%, #fff0f5 100%);
-      padding: 25px;
-      border-radius: 15px;
-      margin: 30px 0;
+      padding: 30px;
+      border-radius: 18px;
+      margin: 35px 0;
+      border-left: 5px solid #0ea5a3;
     }
     .about h3 {
       color: #0ea5a3;
       margin-bottom: 15px;
-      font-size: 18px;
+      font-size: 20px;
+      font-weight: bold;
     }
     .about p {
       font-size: 14px;
       line-height: 1.8;
       color: #555;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
     footer {
       background: #f9f9f9;
       text-align: center;
-      padding: 20px;
-      margin-top: 40px;
+      padding: 25px;
+      margin-top: 50px;
       font-size: 12px;
       color: #999;
-      border-top: 1px solid #eee;
+      border-top: 2px solid #eee;
+    }
+    footer p {
+      margin: 5px 0;
     }
     @media (max-width: 600px) {
       .problems, .types-grid {
         grid-template-columns: 1fr;
       }
       header h1 {
-        font-size: 22px;
+        font-size: 26px;
+      }
+      header p {
+        font-size: 14px;
+      }
+      section {
+        padding: 20px;
+        margin: 30px 0;
       }
       section h2 {
-        font-size: 20px;
+        font-size: 22px;
       }
       .cta-button {
-        padding: 15px 30px;
-        font-size: 16px;
+        padding: 16px 35px;
+        font-size: 18px;
+      }
+      .type-card img {
+        height: 180px;
       }
     }
   </style>
@@ -214,33 +256,33 @@
       <h2>こんなことありませんか？</h2>
       <div class="problems">
         <div class="problem-item">
-          <strong>「うちの子、何が得意なんだろう…」</strong>
+          <strong>「うちの子、何が得意…？」</strong>
           お子さんの才能が見えにくい
         </div>
         <div class="problem-item">
-          <strong>「どう声かけしたらいいの？」</strong>
+          <strong>「どう声かけしたら…？」</strong>
           子育てのコツが知りたい
         </div>
         <div class="problem-item">
-          <strong>「AIとの関わり、不安…」</strong>
-          デジタルとの付き合い方
+          <strong>「AIとの関わり…」</strong>
+          デジタルの付き合い方
         </div>
         <div class="problem-item">
           <strong>「個性を活かしたい」</strong>
-          我が子らしさを大切にしたい
+          我が子らしさを大切に
         </div>
       </div>
-      <p style="text-align: center; color: #666; margin-top: 20px; font-size: 14px;">
+      <p style="text-align: center; color: #666; margin-top: 20px; font-size: 15px; font-weight: 500;">
         そんなお悩みを、このツールで解決します！
       </p>
     </section>
 
     <section>
       <h2>このツールについて</h2>
-      <p style="font-size: 14px; line-height: 1.8; color: #555; margin-bottom: 15px;">
+      <p style="font-size: 15px; line-height: 1.9; color: #555; margin-bottom: 18px;">
         「親子ワクワクAI診断」は、お子さんの「好き」や「得意」を発見するための診断ツール。<br><br>
-        8つの質問に答えるだけで、お子さんが持つ4つのタイプのうち、どの才能が強いのかが見える化できます。<br><br>
-        診断後は、のりこおばちゃんからのアドバイスで、そのタイプに合った子育てのコツや、AI活用法を学べます。
+        <strong style="color: #0ea5a3;">8つの質問に答えるだけで</strong>、お子さんが持つ4つのタイプのうち、どの才能が強いのかが見える化できます。<br><br>
+        診断後は、<strong style="color: #fb7185;">のりこおばちゃん</strong>からのアドバイスで、そのタイプに合った子育てのコツや、AI活用法を学べます。
       </p>
       <ul class="features">
         <li>8つの質問で、お子さんの「才能タイプ」が分かる</li>
@@ -253,26 +295,37 @@
 
     <section>
       <h2>4つのタイプ</h2>
+      <p style="text-align: center; color: #666; font-size: 14px; margin-bottom: 25px;">
+        お子さんはどのタイプかな？診断で見つけよう！
+      </p>
       <div class="types-grid">
         <div class="type-card">
-          <div class="type-emoji">📖</div>
-          <div class="type-name">モコモコ型</div>
-          <div class="type-desc">発想クリエイター<br>想像力が豊かで、ひらめきやお話づくりが好き</div>
+          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/images/type-a.png" alt="モコモコタイプ" />
+          <div class="type-info">
+            <div class="type-name">📖 モコモコ型</div>
+            <div class="type-desc">発想クリエイター<br>想像力が豊かで、ひらめきやお話づくりが好き</div>
+          </div>
         </div>
         <div class="type-card">
-          <div class="type-emoji">📊</div>
-          <div class="type-name">コツコツ型</div>
-          <div class="type-desc">観察マスター<br>じっくり集中して、まとめるのが得意</div>
+          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/images/type-b.png" alt="コツコツタイプ" />
+          <div class="type-info">
+            <div class="type-name">📊 コツコツ型</div>
+            <div class="type-desc">観察マスター<br>じっくり集中して、まとめるのが得意</div>
+          </div>
         </div>
         <div class="type-card">
-          <div class="type-emoji">🎤</div>
-          <div class="type-name">ワクワク型</div>
-          <div class="type-desc">表現チャレンジャー<br>なりきったり発表したり、表現が得意</div>
+          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/images/type-c.png" alt="ワクワクタイプ" />
+          <div class="type-info">
+            <div class="type-name">🎤 ワクワク型</div>
+            <div class="type-desc">表現チャレンジャー<br>なりきったり発表したり、表現が得意</div>
+          </div>
         </div>
         <div class="type-card">
-          <div class="type-emoji">🌈</div>
-          <div class="type-name">キラキラ型</div>
-          <div class="type-desc">感覚アーティスト<br>色や音、身体感覚で表現するのが好き</div>
+          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/images/type-d.png" alt="キラキラタイプ" />
+          <div class="type-info">
+            <div class="type-name">🌈 キラキラ型</div>
+            <div class="type-desc">感覚アーティスト<br>色や音、身体感覚で表現するのが好き</div>
+          </div>
         </div>
       </div>
     </section>
@@ -290,7 +343,7 @@
     </div>
 
     <div class="cta">
-      <p style="font-size: 16px; margin-bottom: 20px; color: #333;">
+      <p class="cta-text">
         さあ、お子さんの才能を発見しよう！
       </p>
       <a href="./diagnosis.html" class="cta-button">🎨 診断を始める</a>
@@ -298,12 +351,16 @@
 
     <section>
       <h2>診断後の流れ</h2>
-      <p style="font-size: 14px; line-height: 1.8; color: #555; margin-bottom: 15px;">
-        1️⃣ 診断ページで8つの質問に答える<br><br>
-        2️⃣ お子さんのタイプが判定される<br><br>
-        3️⃣ LINE公式を友達追加して、タイプを送信<br><br>
-        4️⃣ のりこおばちゃんからアドバイス画像が届く<br><br>
-        5️⃣ OpenChatで詳しく相談・整理ができる
+      <p style="font-size: 15px; line-height: 2; color: #555;">
+        <strong style="color: #0ea5a3;">1️⃣</strong> 診断ページで8つの質問に答える
+        <br><br>
+        <strong style="color: #fb7185;">2️⃣</strong> お子さんのタイプが判定される
+        <br><br>
+        <strong style="color: #0ea5a3;">3️⃣</strong> LINE公式を友達追加して、タイプを送信
+        <br><br>
+        <strong style="color: #fb7185;">4️⃣</strong> のりこおばちゃんからアドバイス画像が届く
+        <br><br>
+        <strong style="color: #0ea5a3;">5️⃣</strong> OpenChatで詳しく相談・整理ができる
       </p>
     </section>
   </div>
