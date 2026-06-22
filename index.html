@@ -16,6 +16,8 @@
       color: #333;
       line-height: 1.6;
     }
+    
+    /* Header */
     header {
       background: linear-gradient(90deg, #0ea5a3, #fb7185);
       color: white;
@@ -34,11 +36,15 @@
       opacity: 0.95;
       font-weight: 500;
     }
+    
+    /* Main Container */
     .container {
       max-width: 700px;
       margin: 0 auto;
       padding: 20px;
     }
+    
+    /* Hero Section */
     .hero {
       margin: 40px 0;
       text-align: center;
@@ -53,6 +59,8 @@
     .hero img:hover {
       transform: scale(1.02);
     }
+    
+    /* Section */
     section {
       margin: 45px 0;
       padding: 35px;
@@ -60,6 +68,7 @@
       border-radius: 20px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     }
+    
     section h2 {
       color: #0ea5a3;
       font-size: 28px;
@@ -69,6 +78,8 @@
       padding-bottom: 15px;
       font-weight: bold;
     }
+    
+    /* Problem Section */
     .problems {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -94,6 +105,8 @@
       margin-bottom: 10px;
       font-size: 15px;
     }
+    
+    /* Types Section - Grid with Images */
     .types-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -133,6 +146,8 @@
       color: #666;
       line-height: 1.5;
     }
+    
+    /* Feature Section */
     .features {
       list-style: none;
       margin: 20px 0;
@@ -155,6 +170,8 @@
       left: 0;
       font-size: 20px;
     }
+    
+    /* CTA Button */
     .cta {
       text-align: center;
       margin: 45px 0;
@@ -183,6 +200,11 @@
       transform: scale(1.06);
       box-shadow: 0 15px 40px rgba(254, 107, 133, 0.45);
     }
+    .cta-button:active {
+      transform: scale(0.98);
+    }
+    
+    /* About Section */
     .about {
       background: linear-gradient(135deg, #f0f9ff 0%, #fff0f5 100%);
       padding: 30px;
@@ -202,6 +224,8 @@
       color: #555;
       margin-bottom: 12px;
     }
+    
+    /* Footer */
     footer {
       background: #f9f9f9;
       text-align: center;
@@ -214,6 +238,8 @@
     footer p {
       margin: 5px 0;
     }
+    
+    /* Responsive */
     @media (max-width: 600px) {
       .problems, .types-grid {
         grid-template-columns: 1fr;
@@ -242,16 +268,19 @@
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <h1>🌟 親子ワクワクAI診断 🌟</h1>
     <p>違いをカラフルに才能に変える</p>
   </header>
 
   <div class="container">
+    <!-- Hero Section -->
     <div class="hero">
       <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/ChatGPT_Image_2026%E5%B9%B46%E6%9C%8823%E6%97%A502_14_33.png" alt="親子ワクワクAI診断メインビジュアル" />
     </div>
 
+    <!-- Problem Section -->
     <section>
       <h2>こんなことありませんか？</h2>
       <div class="problems">
@@ -277,11 +306,14 @@
       </p>
     </section>
 
+    <!-- About the Tool -->
     <section>
       <h2>このツールについて</h2>
       <p style="font-size: 15px; line-height: 1.9; color: #555; margin-bottom: 18px;">
-        「親子ワクワクAI診断」は、お子さんの「好き」や「得意」を発見するための診断ツール。<br><br>
-        <strong style="color: #0ea5a3;">8つの質問に答えるだけで</strong>、お子さんが持つ4つのタイプのうち、どの才能が強いのかが見える化できます。<br><br>
+        「親子ワクワクAI診断」は、お子さんの「好き」や「得意」を発見するための診断ツール。
+        <br><br>
+        <strong style="color: #0ea5a3;">8つの質問に答えるだけで</strong>、お子さんが持つ4つのタイプのうち、どの才能が強いのかが見える化できます。
+        <br><br>
         診断後は、<strong style="color: #fb7185;">のりこおばちゃん</strong>からのアドバイスで、そのタイプに合った子育てのコツや、AI活用法を学べます。
       </p>
       <ul class="features">
@@ -293,6 +325,7 @@
       </ul>
     </section>
 
+    <!-- 4 Types with Images -->
     <section>
       <h2>4つのタイプ</h2>
       <p style="text-align: center; color: #666; font-size: 14px; margin-bottom: 25px;">
@@ -300,28 +333,28 @@
       </p>
       <div class="types-grid">
         <div class="type-card">
-          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/images/type-a.png" alt="モコモコタイプ" />
+          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/imagetype-a.png" alt="モコモコタイプ" />
           <div class="type-info">
             <div class="type-name">📖 モコモコ型</div>
             <div class="type-desc">発想クリエイター<br>想像力が豊かで、ひらめきやお話づくりが好き</div>
           </div>
         </div>
         <div class="type-card">
-          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/images/type-b.png" alt="コツコツタイプ" />
+          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/imagetype-b.png" alt="コツコツタイプ" />
           <div class="type-info">
             <div class="type-name">📊 コツコツ型</div>
             <div class="type-desc">観察マスター<br>じっくり集中して、まとめるのが得意</div>
           </div>
         </div>
         <div class="type-card">
-          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/images/type-c.png" alt="ワクワクタイプ" />
+          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/imagetype-c.png" alt="ワクワクタイプ" />
           <div class="type-info">
             <div class="type-name">🎤 ワクワク型</div>
             <div class="type-desc">表現チャレンジャー<br>なりきったり発表したり、表現が得意</div>
           </div>
         </div>
         <div class="type-card">
-          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/images/type-d.png" alt="キラキラタイプ" />
+          <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/imagetype-d.png" alt="キラキラタイプ" />
           <div class="type-info">
             <div class="type-name">🌈 キラキラ型</div>
             <div class="type-desc">感覚アーティスト<br>色や音、身体感覚で表現するのが好き</div>
@@ -330,6 +363,7 @@
       </div>
     </section>
 
+    <!-- About noriko -->
     <div class="about">
       <h3>💕 のりこおばちゃんについて</h3>
       <p>
@@ -342,6 +376,7 @@
       </p>
     </div>
 
+    <!-- CTA -->
     <div class="cta">
       <p class="cta-text">
         さあ、お子さんの才能を発見しよう！
@@ -349,6 +384,7 @@
       <a href="./diagnosis.html" class="cta-button">🎨 診断を始める</a>
     </div>
 
+    <!-- Info Section -->
     <section>
       <h2>診断後の流れ</h2>
       <p style="font-size: 15px; line-height: 2; color: #555;">
@@ -365,6 +401,7 @@
     </section>
   </div>
 
+  <!-- Footer -->
   <footer>
     <p>© AmeCan. / 親子ワクワクAI診断（β版）</p>
     <p>このツールはブラウザ内で動作し、個人情報を収集しません</p>
