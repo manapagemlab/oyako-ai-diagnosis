@@ -5,379 +5,480 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>親子ワクワクAI診断</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Noto Sans JP', sans-serif;
       background: linear-gradient(135deg, #fff8f0 0%, #fffbf5 100%);
       color: #333;
+      line-height: 1.6;
     }
     header {
       background: linear-gradient(90deg, #0ea5a3, #fb7185);
       color: white;
-      padding: 20px;
+      padding: 25px 20px;
       text-align: center;
     }
-    header h1 {
-      font-size: 28px;
-      margin-bottom: 5px;
-    }
-    .container {
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-    .question-section {
+    header h1 { font-size: 26px; margin-bottom: 5px; }
+    header p { font-size: 13px; opacity: 0.9; }
+    .container { max-width: 720px; margin: 0 auto; padding: 20px; }
+    .howto {
       background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      border-radius: 14px;
+      padding: 20px 25px;
       margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+      border-left: 5px solid #0ea5a3;
     }
-    .question-number {
-      color: #0ea5a3;
-      font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 10px;
+    .howto h2 { color: #0ea5a3; font-size: 16px; margin-bottom: 10px; }
+    .howto ol { padding-left: 18px; font-size: 14px; color: #555; line-height: 2; }
+    .type-section {
+      background: white;
+      border-radius: 14px;
+      padding: 22px 25px;
+      margin: 16px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
     }
-    .question-text {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: #333;
-    }
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .checkbox-item {
+    .type-header {
       display: flex;
       align-items: center;
-    }
-    .checkbox-item input {
-      width: 20px;
-      height: 20px;
-      margin-right: 12px;
-      cursor: pointer;
-    }
-    .checkbox-item label {
-      cursor: pointer;
-      font-size: 15px;
-      flex: 1;
-    }
-    .nav-buttons {
-      display: flex;
       gap: 10px;
-      margin-top: 25px;
-      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
     }
-    .btn {
-      padding: 12px 25px;
-      border: none;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .btn-prev {
-      background: #ccc;
-      color: #333;
-    }
-    .btn-prev:hover {
-      background: #999;
-    }
-    .btn-next {
+    .type-badge {
       background: linear-gradient(90deg, #0ea5a3, #fb7185);
       color: white;
-    }
-    .btn-next:hover {
-      transform: scale(1.05);
-    }
-    .result-section {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      text-align: center;
-    }
-    .result-title {
-      font-size: 24px;
-      color: #0ea5a3;
-      margin-bottom: 20px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
       font-weight: bold;
+      white-space: nowrap;
     }
-    .type-result {
-      background: linear-gradient(135deg, #f0f9ff 0%, #fff0f5 100%);
-      padding: 20px;
-      border-radius: 12px;
-      margin: 15px 0;
+    .type-title { font-size: 17px; font-weight: bold; color: #333; }
+    .question-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f5f5f5;
+      flex-wrap: wrap;
     }
-    .type-name {
-      font-size: 20px;
-      color: #fb7185;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    .type-desc {
+    .question-row:last-child { border-bottom: none; }
+    .question-text {
+      flex: 1;
       font-size: 14px;
+      color: #444;
+      min-width: 180px;
+    }
+    .radio-group {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .radio-group label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+    }
+    .radio-group input[type="radio"] { display: none; }
+    .radio-btn {
+      width: 70px;
+      padding: 6px 4px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 12px;
       color: #666;
-      margin-bottom: 12px;
+      background: #fafafa;
+      transition: all 0.2s;
+      cursor: pointer;
+      line-height: 1.3;
     }
-    .score-bar {
-      background: #ddd;
-      height: 20px;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 10px 0;
+    .radio-group input[type="radio"]:checked + .radio-btn {
+      border-color: #0ea5a3;
+      background: linear-gradient(135deg, #e0f7f6, #ffe4ed);
+      color: #0ea5a3;
+      font-weight: bold;
     }
-    .score-fill {
-      height: 100%;
+    .btn-area {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    .btn-reset {
+      padding: 12px 30px;
+      border: 2px solid #ccc;
+      border-radius: 30px;
+      background: white;
+      color: #888;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-reset:hover { border-color: #999; color: #555; }
+    .btn-result {
+      padding: 14px 40px;
+      border: none;
+      border-radius: 30px;
       background: linear-gradient(90deg, #0ea5a3, #fb7185);
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(251,113,133,0.35);
+      transition: all 0.2s;
     }
+    .btn-result:hover { transform: scale(1.05); }
+    #result { display: none; }
+    .result-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      margin: 20px 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    .result-card h2 {
+      color: #0ea5a3;
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #fb7185;
+    }
+    .type-score-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .type-score-label {
+      width: 130px;
+      font-size: 13px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .score-bar-wrap {
+      flex: 1;
+      background: #eee;
+      border-radius: 10px;
+      height: 18px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #0ea5a3, #fb7185);
+      transition: width 0.6s ease;
+    }
+    .score-num {
+      width: 40px;
+      text-align: right;
+      font-size: 14px;
+      font-weight: bold;
+      color: #0ea5a3;
+      flex-shrink: 0;
+    }
+    .main-type-box {
+      background: linear-gradient(135deg, #f0f9ff, #fff0f5);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #0ea5a3;
+    }
+    .main-type-box h3 {
+      color: #fb7185;
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+    .main-type-box .strength { margin: 10px 0; }
+    .main-type-box .strength h4 { color: #0ea5a3; font-size: 14px; margin-bottom: 5px; }
+    .main-type-box .strength p { font-size: 14px; color: #555; line-height: 1.7; }
+    .prompt-box {
+      background: #f9f9f9;
+      border-left: 4px solid #0ea5a3;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+    .prompt-box h4 { color: #0ea5a3; font-size: 13px; margin-bottom: 6px; }
+    .prompt-box p { font-size: 13px; color: #555; line-height: 1.7; }
     .next-step {
       background: #fff0f5;
       border-left: 5px solid #fb7185;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 25px;
-      text-align: left;
+      padding: 20px 24px;
+      border-radius: 12px;
+      margin: 20px 0;
     }
-    .next-step h3 {
-      color: #fb7185;
-      margin-bottom: 12px;
-      font-size: 16px;
-    }
-    .next-step p {
-      font-size: 14px;
-      line-height: 1.8;
-      margin-bottom: 15px;
-    }
-    .line-button {
+    .next-step h3 { color: #fb7185; font-size: 16px; margin-bottom: 10px; }
+    .next-step p { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 14px; }
+    .line-btn {
       display: inline-block;
       background: linear-gradient(90deg, #0ea5a3, #fb7185);
       color: white;
-      padding: 12px 25px;
-      border-radius: 20px;
+      padding: 12px 28px;
+      border-radius: 24px;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: bold;
-      margin-right: 10px;
+      transition: all 0.2s;
+      margin-bottom: 10px;
     }
-    .line-button:hover {
-      transform: scale(1.05);
+    .line-btn:hover { transform: scale(1.05); }
+    .openchat-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #a855f7, #fb7185);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 24px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      transition: all 0.2s;
     }
+    .openchat-btn:hover { transform: scale(1.05); }
     .back-link {
       text-align: center;
-      margin-top: 30px;
+      margin: 20px 0 10px;
     }
     .back-link a {
       color: #0ea5a3;
       text-decoration: none;
       font-weight: bold;
+      font-size: 14px;
     }
-    .hidden {
-      display: none;
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 30px;
     }
-    .progress {
-      background: #ddd;
-      height: 4px;
-      margin-bottom: 20px;
-      border-radius: 2px;
-    }
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #0ea5a3, #fb7185);
+    @media (max-width: 600px) {
+      .radio-btn { width: 60px; font-size: 11px; }
+      .type-score-label { width: 100px; font-size: 12px; }
+      .btn-result { font-size: 15px; padding: 12px 30px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🌟 親子ワクワクAI診断 🌟</h1>
-    <p>あなたのお子さんはどのタイプ？</p>
-  </header>
+<header>
+  <h1>🌟 親子ワクワクAI診断 🌟</h1>
+  <p>お子さんの才能タイプを見つけよう ／「診断」ではなく<strong>傾向を知る</strong>ためのツール</p>
+</header>
 
-  <div class="container">
-    <div id="quiz-section">
-      <div class="progress">
-        <div class="progress-fill" id="progress-fill"></div>
-      </div>
-      <div id="questions-container"></div>
-      <div class="nav-buttons">
-        <button class="btn btn-prev" id="btn-prev" onclick="prevQuestion()">← 前へ</button>
-        <button class="btn btn-next" id="btn-next" onclick="nextQuestion()">次へ →</button>
-      </div>
-    </div>
-
-    <div id="result-section" class="hidden">
-      <div class="result-section">
-        <div class="result-title">📊 診断結果</div>
-        <div id="result-content"></div>
-        <div class="next-step">
-          <h3>📱 次のステップ</h3>
-          <p>診断結果をLINE公式に送信して、のりこおばちゃんから個別アドバイスを受け取ってください！</p>
-          <a href="https://lin.ee/pm64uW8" class="line-button" target="_blank">💚 LINE公式に登録</a>
-        </div>
-        <div class="back-link">
-          <a href="./">← トップに戻る</a>
-        </div>
-      </div>
-    </div>
+<div class="container">
+  <div class="howto">
+    <h2>📋 使い方</h2>
+    <ol>
+      <li>各質問を <strong>いつもそう＝2点 ／ ときどきそう＝1点 ／ あまりない＝0点</strong> で選んでください</li>
+      <li>タイプごとに自動で合計し、傾向の強いタイプを表示します（複数強め＝ハイブリッド）</li>
+      <li>結果の下に <em>強み・工夫が必要な場面・AI活用プロンプト</em> が出ます</li>
+    </ol>
   </div>
 
-  <script>
-    const questions = [
-      {
-        text: "Q1. お子さんはお話を作ったり、ものごとを想像したりするのが好きですか？",
-        types: { A: 1, B: 0, C: 0, D: 0 }
-      },
-      {
-        text: "Q2. 細かいところまでよく観察して、じっくり物事に取り組みますか？",
-        types: { A: 0, B: 1, C: 0, D: 0 }
-      },
-      {
-        text: "Q3. お子さんは表現することや、みんなの前で発表するのが好きですか？",
-        types: { A: 0, B: 0, C: 1, D: 0 }
-      },
-      {
-        text: "Q4. 色や音、感覚的なものに敏感で、表現するのが得意ですか？",
-        types: { A: 0, B: 0, C: 0, D: 1 }
-      },
-      {
-        text: "Q5. 新しいアイデアやひらめきが得意で、創造的ですか？",
-        types: { A: 1, B: 0, C: 0, D: 0 }
-      },
-      {
-        text: "Q6. コツコツ続けることや、ルールを守ることが得意ですか？",
-        types: { A: 0, B: 1, C: 0, D: 0 }
-      },
-      {
-        text: "Q7. 人前でのパフォーマンスや、自分を表現することが得意ですか？",
-        types: { A: 0, B: 0, C: 1, D: 0 }
-      },
-      {
-        text: "Q8. 美しいもの、珍しいものに惹かれて、それを表現したいと思いますか？",
-        types: { A: 0, B: 0, C: 0, D: 1 }
-      }
-    ];
+  <div id="questions-area"></div>
 
-    const typeInfo = {
-      A: {
-        name: "📖 モコモコ型（発想クリエイター）",
-        desc: "想像力が豊かで、ひらめきやお話づくりが好き。新しいアイデアを生み出すのが得意です。"
-      },
-      B: {
-        name: "📊 コツコツ型（観察マスター）",
-        desc: "じっくり集中して、細部をよく観察できます。コツコツ続けることが得意で、整理整頓も上手です。"
-      },
-      C: {
-        name: "🎤 ワクワク型（表現チャレンジャー）",
-        desc: "なりきったり発表したり、表現することが得意。みんなを笑顔にする力を持っています。"
-      },
-      D: {
-        name: "🌈 キラキラ型（感覚アーティスト）",
-        desc: "色や音、身体感覚で表現するのが好き。美しいものや新しい感覚に敏感です。"
-      }
-    };
+  <div class="btn-area">
+    <button class="btn-reset" onclick="resetAll()">🔄 リセット</button>
+    <button class="btn-result" onclick="showResult()">📊 結果を見る</button>
+  </div>
 
-    let currentQuestion = 0;
-    const answers = {};
+  <div id="result"></div>
 
-    function renderQuestion() {
-      const container = document.getElementById('questions-container');
-      const question = questions[currentQuestion];
-      
-      container.innerHTML = `
-        <div class="question-section">
-          <div class="question-number">Q${currentQuestion + 1} / 8</div>
-          <div class="question-text">${question.text}</div>
-          <div class="checkbox-group">
-            <div class="checkbox-item">
-              <input type="checkbox" id="yes" ${answers[currentQuestion]?.yes ? 'checked' : ''}>
-              <label for="yes">はい</label>
-            </div>
-            <div class="checkbox-item">
-              <input type="checkbox" id="somewhat" ${answers[currentQuestion]?.somewhat ? 'checked' : ''}>
-              <label for="somewhat">まあそう</label>
-            </div>
-            <div class="checkbox-item">
-              <input type="checkbox" id="no" ${answers[currentQuestion]?.no ? 'checked' : ''}>
-              <label for="no">いいえ</label>
-            </div>
+  <div class="back-link">
+    <a href="./">← トップに戻る</a>
+  </div>
+</div>
+
+<footer>© AmeCan. / 親子ワクワクAI診断（β版）<br>これは〈傾向を可視化する参考ツール〉です。個人情報は収集しません。ブラウザ内で完結します。</footer>
+
+<script>
+const types = [
+  {
+    id: 'A',
+    badge: '📖 モコモコ型',
+    title: '発想クリエイター',
+    questions: [
+      'お話を作ったり、空想の世界を楽しんだりする',
+      '「なんで？」「どうして？」とよく質問する',
+      '絵を描いたり、工作したりするのが好き',
+      '自分だけのルールやルーティンを作る',
+      '物事を別の見方で考えることができる',
+    ],
+    strength: '想像力が豊かで、アイデアを生み出す力があります。自由な発想で新しいものを作り出すのが得意です。',
+    challenge: '周りに合わせるのが難しい場面や、「正解」を求められる状況では力を発揮しにくいことも。',
+    prompt: '「〇〇について、ふしぎな話を作ってみよう」「もし〜だったら？」とAIと一緒に空想の世界を広げてみよう！',
+  },
+  {
+    id: 'B',
+    badge: '📊 コツコツ型',
+    title: '観察マスター',
+    questions: [
+      'じっくり観察して細かいことに気づく',
+      'コツコツ繰り返すことが得意（練習・暗記など）',
+      'ものごとを順番通りに進めるのが好き',
+      'ルールや約束をきちんと守ろうとする',
+      '集めたり、整理したりするのが楽しい',
+    ],
+    strength: '観察力と集中力が抜群。一度決めたことをコツコツ続けられる持続力があります。',
+    challenge: '急な変更や「答えのない課題」では戸惑うことがあるかも。',
+    prompt: '「これを10回練習したらどんな変化があるか記録してみて」とAIと一緒に成長を記録しよう！',
+  },
+  {
+    id: 'C',
+    badge: '🎤 ワクワク型',
+    title: '表現チャレンジャー',
+    questions: [
+      '人前で話すことや発表することが好き',
+      'なりきり遊びやロールプレイが大好き',
+      '友達を笑わせたり盛り上げたりするのが得意',
+      '声が大きく、感情を豊かに表現できる',
+      '新しいことへの挑戦が楽しい',
+    ],
+    strength: '表現力とコミュニケーション力が高く、場を盛り上げる力があります。チャレンジ精神も旺盛です。',
+    challenge: '興奮しすぎて話が飛んだり、衝動的に動いてしまうこともあるかも。',
+    prompt: '「このキャラクターになりきって話してみて」とAIと一緒にお芝居や物語ごっこをしてみよう！',
+  },
+  {
+    id: 'D',
+    badge: '🌈 キラキラ型',
+    title: '感覚アーティスト',
+    questions: [
+      '音楽・色・感触など感覚的なものに敏感',
+      '絵・ダンス・音楽など芸術的な表現が好き',
+      '自然の中にいると落ち着く',
+      '直感で物事を判断することが多い',
+      '美しいものや珍しいものに強く惹かれる',
+    ],
+    strength: '感覚が豊かで、美しさや繊細さを表現する才能があります。独自の感性で世界を見ています。',
+    challenge: '感覚過敏な面もあり、うるさい・眩しいなど環境に左右されやすいことも。',
+    prompt: '「この絵（音楽）を見てどんな気持ち？どんな物語が浮かぶ？」とAIに話しかけてみよう！',
+  },
+];
+
+function renderQuestions() {
+  const area = document.getElementById('questions-area');
+  area.innerHTML = '';
+  types.forEach(type => {
+    const section = document.createElement('div');
+    section.className = 'type-section';
+    section.innerHTML = `
+      <div class="type-header">
+        <span class="type-badge">${type.badge}</span>
+        <span class="type-title">${type.title}</span>
+      </div>
+      ${type.questions.map((q, qi) => `
+        <div class="question-row">
+          <div class="question-text">${q}</div>
+          <div class="radio-group">
+            <label>
+              <input type="radio" name="${type.id}_${qi}" value="2">
+              <span class="radio-btn">いつも<br>そう<br><strong>2点</strong></span>
+            </label>
+            <label>
+              <input type="radio" name="${type.id}_${qi}" value="1">
+              <span class="radio-btn">とき<br>どき<br><strong>1点</strong></span>
+            </label>
+            <label>
+              <input type="radio" name="${type.id}_${qi}" value="0">
+              <span class="radio-btn">あまり<br>ない<br><strong>0点</strong></span>
+            </label>
           </div>
         </div>
-      `;
+      `).join('')}
+    `;
+    area.appendChild(section);
+  });
+}
 
-      document.getElementById('btn-prev').style.display = currentQuestion === 0 ? 'none' : 'block';
-      updateProgress();
-    }
+function calcScores() {
+  const scores = {};
+  types.forEach(type => {
+    let total = 0;
+    type.questions.forEach((_, qi) => {
+      const radios = document.getElementsByName(`${type.id}_${qi}`);
+      radios.forEach(r => { if (r.checked) total += parseInt(r.value); });
+    });
+    scores[type.id] = total;
+  });
+  return scores;
+}
 
-    function updateProgress() {
-      const progress = ((currentQuestion + 1) / 8) * 100;
-      document.getElementById('progress-fill').style.width = progress + '%';
-    }
+function showResult() {
+  const scores = calcScores();
+  const maxScore = types[0].questions.length * 2;
+  const maxVal = Math.max(...Object.values(scores));
 
-    function nextQuestion() {
-      saveAnswer();
-      if (currentQuestion < 7) {
-        currentQuestion++;
-        renderQuestion();
-      } else {
-        showResult();
-      }
-    }
+  let barsHTML = types.map(type => {
+    const pct = maxScore > 0 ? Math.round((scores[type.id] / maxScore) * 100) : 0;
+    return `
+      <div class="type-score-row">
+        <div class="type-score-label">${type.badge}</div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-fill" style="width:${pct}%"></div>
+        </div>
+        <div class="score-num">${scores[type.id]}点</div>
+      </div>
+    `;
+  }).join('');
 
-    function prevQuestion() {
-      if (currentQuestion > 0) {
-        currentQuestion--;
-        renderQuestion();
-      }
-    }
+  const mainTypes = types.filter(t => scores[t.id] === maxVal);
+  let mainHTML = mainTypes.map(type => `
+    <div class="main-type-box">
+      <h3>${type.badge}（${type.title}）</h3>
+      <div class="strength">
+        <h4>✨ 強み</h4>
+        <p>${type.strength}</p>
+      </div>
+      <div class="strength">
+        <h4>🌱 工夫が必要な場面</h4>
+        <p>${type.challenge}</p>
+      </div>
+      <div class="prompt-box">
+        <h4>🤖 AI活用プロンプト例</h4>
+        <p>${type.prompt}</p>
+      </div>
+    </div>
+  `).join('');
 
-    function saveAnswer() {
-      if (!answers[currentQuestion]) answers[currentQuestion] = {};
-      answers[currentQuestion].yes = document.getElementById('yes').checked;
-      answers[currentQuestion].somewhat = document.getElementById('somewhat').checked;
-      answers[currentQuestion].no = document.getElementById('no').checked;
-    }
+  const isHybrid = mainTypes.length > 1;
 
-    function showResult() {
-      const scores = { A: 0, B: 0, C: 0, D: 0 };
+  const resultEl = document.getElementById('result');
+  resultEl.innerHTML = `
+    <div class="result-card">
+      <h2>📊 診断結果</h2>
+      <p style="text-align:center;font-size:14px;color:#888;margin-bottom:16px;">
+        ${isHybrid ? '🌈 ハイブリッドタイプ！複数の才能が強く出ています' : '🌟 メインタイプが見えてきました'}
+      </p>
+      ${barsHTML}
+    </div>
+    ${mainHTML}
+    <div class="next-step">
+      <h3>📱 次のステップ</h3>
+      <p>診断結果をLINE公式に送って、<strong>のりこおばちゃんから個別アドバイス</strong>を受け取ってください！<br>
+      「〇〇型でした！」と送信するだけでOK🎉</p>
+      <a href="https://lin.ee/uarozaK" class="line-btn" target="_blank">💚 のりこおばちゃんのLINEに登録</a>
+      <p style="margin-top:16px;">みんなで一緒に作戦会議もしよう！</p>
+      <a href="https://line.me/ti/g2/_P8LmwTiCbls9XFwkT_tfQsZqhCfiqSG524QFA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" class="openchat-btn" target="_blank">✨ オープンチャットに参加する</a>
+    </div>
+  `;
+  resultEl.style.display = 'block';
+  resultEl.scrollIntoView({ behavior: 'smooth' });
+}
 
-      for (let i = 0; i < 8; i++) {
-        const answer = answers[i];
-        if (answer?.yes) {
-          const type = Object.keys(questions[i].types).find(t => questions[i].types[t] === 1);
-          scores[type]++;
-        }
-      }
+function resetAll() {
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  document.getElementById('result').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-      const maxScore = Math.max(...Object.values(scores));
-      const mainTypes = Object.keys(scores).filter(t => scores[t] === maxScore);
-
-      let resultHTML = '';
-      mainTypes.forEach(type => {
-        resultHTML += `
-          <div class="type-result">
-            <div class="type-name">${typeInfo[type].name}</div>
-            <div class="type-desc">${typeInfo[type].desc}</div>
-            <div class="score-bar">
-              <div class="score-fill" style="width: ${(scores[type] / 8) * 100}%"></div>
-            </div>
-          </div>
-        `;
-      });
-
-      document.getElementById('result-content').innerHTML = resultHTML;
-      document.getElementById('quiz-section').classList.add('hidden');
-      document.getElementById('result-section').classList.remove('hidden');
-    }
-
-    renderQuestion();
-  </script>
+renderQuestions();
+</script>
 </body>
 </html>
