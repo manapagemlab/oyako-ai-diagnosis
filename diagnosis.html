@@ -98,10 +98,6 @@
     .btn-next:hover {
       transform: scale(1.05);
     }
-    .btn-next:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
     .result-section {
       background: white;
       padding: 30px;
@@ -142,7 +138,6 @@
     .score-fill {
       height: 100%;
       background: linear-gradient(90deg, #0ea5a3, #fb7185);
-      transition: width 0.3s;
     }
     .next-step {
       background: #fff0f5;
@@ -185,9 +180,6 @@
       text-decoration: none;
       font-weight: bold;
     }
-    .back-link a:hover {
-      text-decoration: underline;
-    }
     .hidden {
       display: none;
     }
@@ -200,7 +192,6 @@
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, #0ea5a3, #fb7185);
-      transition: width 0.3s;
     }
   </style>
 </head>
@@ -215,9 +206,7 @@
       <div class="progress">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
-
       <div id="questions-container"></div>
-
       <div class="nav-buttons">
         <button class="btn btn-prev" id="btn-prev" onclick="prevQuestion()">← 前へ</button>
         <button class="btn btn-next" id="btn-next" onclick="nextQuestion()">次へ →</button>
@@ -231,7 +220,7 @@
         <div class="next-step">
           <h3>📱 次のステップ</h3>
           <p>診断結果をLINE公式に送信して、のりこおばちゃんから個別アドバイスを受け取ってください！</p>
-          <a href="lin.ee/pm64uW8" class="line-button" target="_blank">💚 LINE公式に登録</a>
+          <a href="https://lin.ee/pm64uW8" class="line-button" target="_blank">💚 LINE公式に登録</a>
         </div>
         <div class="back-link">
           <a href="./">← トップに戻る</a>
@@ -243,35 +232,35 @@
   <script>
     const questions = [
       {
-        text: "お子さんはお話を作ったり、ものごとを想像したりするのが好きですか？",
+        text: "Q1. お子さんはお話を作ったり、ものごとを想像したりするのが好きですか？",
         types: { A: 1, B: 0, C: 0, D: 0 }
       },
       {
-        text: "細かいところまでよく観察して、じっくり物事に取り組みますか？",
+        text: "Q2. 細かいところまでよく観察して、じっくり物事に取り組みますか？",
         types: { A: 0, B: 1, C: 0, D: 0 }
       },
       {
-        text: "お子さんは表現することや、みんなの前で発表するのが好きですか？",
+        text: "Q3. お子さんは表現することや、みんなの前で発表するのが好きですか？",
         types: { A: 0, B: 0, C: 1, D: 0 }
       },
       {
-        text: "色や音、感覚的なものに敏感で、表現するのが得意ですか？",
+        text: "Q4. 色や音、感覚的なものに敏感で、表現するのが得意ですか？",
         types: { A: 0, B: 0, C: 0, D: 1 }
       },
       {
-        text: "新しいアイデアやひらめきが得意で、創造的ですか？",
+        text: "Q5. 新しいアイデアやひらめきが得意で、創造的ですか？",
         types: { A: 1, B: 0, C: 0, D: 0 }
       },
       {
-        text: "コツコツ続けることや、ルールを守ることが得意ですか？",
+        text: "Q6. コツコツ続けることや、ルールを守ることが得意ですか？",
         types: { A: 0, B: 1, C: 0, D: 0 }
       },
       {
-        text: "人前でのパフォーマンスや、自分を表現することが得意ですか？",
+        text: "Q7. 人前でのパフォーマンスや、自分を表現することが得意ですか？",
         types: { A: 0, B: 0, C: 1, D: 0 }
       },
       {
-        text: "美しいもの、珍しいものに惹かれて、それを表現したいと思いますか？",
+        text: "Q8. 美しいもの、珍しいものに惹かれて、それを表現したいと思いますか？",
         types: { A: 0, B: 0, C: 0, D: 1 }
       }
     ];
@@ -304,19 +293,19 @@
       
       container.innerHTML = `
         <div class="question-section">
-          <div class="question-number">Q${currentQuestion + 1} / ${questions.length}</div>
+          <div class="question-number">Q${currentQuestion + 1} / 8</div>
           <div class="question-text">${question.text}</div>
           <div class="checkbox-group">
             <div class="checkbox-item">
-              <input type="checkbox" id="yes" ${answers[currentQuestion]?.yes ? 'checked' : ''} onchange="saveAnswer()">
+              <input type="checkbox" id="yes" ${answers[currentQuestion]?.yes ? 'checked' : ''}>
               <label for="yes">はい</label>
             </div>
             <div class="checkbox-item">
-              <input type="checkbox" id="somewhat" ${answers[currentQuestion]?.somewhat ? 'checked' : ''} onchange="saveAnswer()">
+              <input type="checkbox" id="somewhat" ${answers[currentQuestion]?.somewhat ? 'checked' : ''}>
               <label for="somewhat">まあそう</label>
             </div>
             <div class="checkbox-item">
-              <input type="checkbox" id="no" ${answers[currentQuestion]?.no ? 'checked' : ''} onchange="saveAnswer()">
+              <input type="checkbox" id="no" ${answers[currentQuestion]?.no ? 'checked' : ''}>
               <label for="no">いいえ</label>
             </div>
           </div>
@@ -327,16 +316,14 @@
       updateProgress();
     }
 
-    function saveAnswer() {
-      if (!answers[currentQuestion]) answers[currentQuestion] = {};
-      answers[currentQuestion].yes = document.getElementById('yes').checked;
-      answers[currentQuestion].somewhat = document.getElementById('somewhat').checked;
-      answers[currentQuestion].no = document.getElementById('no').checked;
+    function updateProgress() {
+      const progress = ((currentQuestion + 1) / 8) * 100;
+      document.getElementById('progress-fill').style.width = progress + '%';
     }
 
     function nextQuestion() {
       saveAnswer();
-      if (currentQuestion < questions.length - 1) {
+      if (currentQuestion < 7) {
         currentQuestion++;
         renderQuestion();
       } else {
@@ -351,23 +338,21 @@
       }
     }
 
-    function updateProgress() {
-      const progress = ((currentQuestion + 1) / questions.length) * 100;
-      document.getElementById('progress-fill').style.width = progress + '%';
+    function saveAnswer() {
+      if (!answers[currentQuestion]) answers[currentQuestion] = {};
+      answers[currentQuestion].yes = document.getElementById('yes').checked;
+      answers[currentQuestion].somewhat = document.getElementById('somewhat').checked;
+      answers[currentQuestion].no = document.getElementById('no').checked;
     }
 
     function showResult() {
       const scores = { A: 0, B: 0, C: 0, D: 0 };
 
-      for (let i = 0; i < questions.length; i++) {
+      for (let i = 0; i < 8; i++) {
         const answer = answers[i];
         if (answer?.yes) {
-          Object.assign(scores, {
-            A: scores.A + (questions[i].types.A || 0),
-            B: scores.B + (questions[i].types.B || 0),
-            C: scores.C + (questions[i].types.C || 0),
-            D: scores.D + (questions[i].types.D || 0)
-          });
+          const type = Object.keys(questions[i].types).find(t => questions[i].types[t] === 1);
+          scores[type]++;
         }
       }
 
@@ -376,15 +361,13 @@
 
       let resultHTML = '';
       mainTypes.forEach(type => {
-        const percentage = (scores[type] / 8) * 100;
         resultHTML += `
           <div class="type-result">
             <div class="type-name">${typeInfo[type].name}</div>
             <div class="type-desc">${typeInfo[type].desc}</div>
             <div class="score-bar">
-              <div class="score-fill" style="width: ${percentage}%"></div>
+              <div class="score-fill" style="width: ${(scores[type] / 8) * 100}%"></div>
             </div>
-            <div style="font-size: 12px; color: #999;">スコア: ${scores[type]}/8</div>
           </div>
         `;
       });
