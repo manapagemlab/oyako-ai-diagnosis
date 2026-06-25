@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>親子ワクワクAI診断 - お子さんの才能を発見しよう</title>
+  <title>親子ワクワクAI診断 - 好きと得意を見つけるヒント</title>
   <style>
     * {
       margin: 0;
@@ -68,6 +68,12 @@
       border-bottom: 4px solid #fb7185;
       padding-bottom: 15px;
       font-weight: bold;
+    }
+    .lead {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 18px;
     }
     .problems {
       display: grid;
@@ -138,8 +144,7 @@
       margin: 20px 0;
     }
     .features li {
-      padding: 14px 0;
-      padding-left: 38px;
+      padding: 14px 0 14px 38px;
       position: relative;
       font-size: 14px;
       line-height: 1.7;
@@ -154,6 +159,29 @@
       position: absolute;
       left: 0;
       font-size: 20px;
+    }
+    .note {
+      background: #f0f9ff;
+      border-left: 5px solid #0ea5a3;
+      border-radius: 14px;
+      color: #4b5563;
+      font-size: 14px;
+      line-height: 1.8;
+      margin-top: 22px;
+      padding: 18px;
+    }
+    .conversation {
+      background: linear-gradient(135deg, #fff8f0 0%, #fff0f5 100%);
+      border-radius: 16px;
+      margin: 22px 0;
+      padding: 22px;
+    }
+    .conversation p {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.9;
+      margin: 8px 0;
+      text-align: center;
     }
     .cta {
       text-align: center;
@@ -253,8 +281,8 @@
 </head>
 <body>
   <header>
-    <h1>🌟 親子ワクワクAI診断 🌟</h1>
-    <p>違いをカラフルに才能に変える</p>
+    <h1>親子ワクワクAI診断</h1>
+    <p>子どもを決めつける診断ではなく、親子の会話を始めるミニ診断</p>
   </header>
 
   <div class="container">
@@ -266,39 +294,40 @@
       <h2>こんなことありませんか？</h2>
       <div class="problems">
         <div class="problem-item">
-          <strong>「うちの子、何が得意…？」</strong>
-          お子さんの才能が見えにくい
+          <strong>「うちの子、何が好きなんやろう？」</strong>
+          好きや得意の入り口が見えにくい
         </div>
         <div class="problem-item">
-          <strong>「どう声かけしたら…？」</strong>
-          子育てのコツが知りたい
+          <strong>「どう声かけしたらいい？」</strong>
+          その子に合う関わり方のヒントがほしい
         </div>
         <div class="problem-item">
-          <strong>「AIとの関わり…」</strong>
-          デジタルの付き合い方
+          <strong>「AIとどう付き合えばいい？」</strong>
+          デジタルとの距離感を一緒に考えたい
         </div>
         <div class="problem-item">
-          <strong>「個性を活かしたい」</strong>
-          我が子らしさを大切に
+          <strong>「個性を大切にしたい」</strong>
+          できないことより、その子らしさを見たい
         </div>
       </div>
       <p style="text-align: center; color: #666; margin-top: 20px; font-size: 15px; font-weight: 500;">
-        そんなお悩みを、このツールで解決します！
+        そんな時に、子どもの見方を少し増やすきっかけになるツールです。
       </p>
     </section>
 
     <section>
       <h2>このツールについて</h2>
-      <p style="font-size: 15px; line-height: 1.9; color: #555; margin-bottom: 18px;">
-        「親子ワクワクAI診断」は、お子さんの「好き」や「得意」を発見するための診断ツール。<br><br>
-        <strong style="color: #0ea5a3;">8つの質問に答えるだけで</strong>、お子さんが持つ4つのタイプのうち、どの才能が強いのかが見える化できます。<br><br>
-        診断後は、<strong style="color: #fb7185;">のりこおばちゃん</strong>からのアドバイスで、そのタイプに合った子育てのコツや、AI活用法を学べます。
+      <p class="lead">
+        「親子ワクワクAI診断」は、お子さんの今見えている「好き」「得意」「夢中になれること」を、親子で見つけるためのミニ診断です。<br><br>
+        <strong style="color: #0ea5a3;">いくつかの質問に答えると</strong>、4つのタイプをもとに、お子さんの強みの傾向や、関わり方のヒントが表示されます。<br><br>
+        結果は、お子さんの才能や将来を決めるものではありません。<br>
+        「こんな力もあるかもしれないね」と、親子で話すきっかけとしてお楽しみください。
       </p>
       <ul class="features">
-        <li>8つの質問で、お子さんの「才能タイプ」が分かる</li>
-        <li>複数タイプの場合は、ハイブリッド判定で細かく理解できる</li>
-        <li>診断後、のりこおばちゃんから個別のアドバイスが受け取れる</li>
-        <li>スポーツ・創作・表現など、幅広い才能に対応</li>
+        <li>質問に答えながら、今見えている強みの傾向を整理できる</li>
+        <li>複数タイプの場合は、ハイブリッド判定でその子らしさを細かく見られる</li>
+        <li>診断後、のりこおばちゃんから声かけや関わり方のヒントが届く</li>
+        <li>スポーツ・創作・表現など、幅広い「好き」や「得意」の入り口に対応</li>
         <li>個人情報は一切収集しません（ブラウザ内で完結）</li>
       </ul>
     </section>
@@ -306,7 +335,7 @@
     <section>
       <h2>4つのタイプ</h2>
       <p style="text-align: center; color: #666; font-size: 14px; margin-bottom: 25px;">
-        お子さんはどのタイプかな？診断で見つけよう！
+        今見えている「好き」や「得意」の傾向を、4つのタイプから見ていきます。
       </p>
       <div class="types-grid">
         <div class="type-card">
@@ -327,7 +356,7 @@
           <img src="https://raw.githubusercontent.com/manapagemlab/oyako-ai-diagnosis/main/type-c.png" alt="ワクワクタイプ" />
           <div class="type-info">
             <div class="type-name">🎤 ワクワク型</div>
-            <div class="type-desc">表現チャレンジャー<br>なりきったり発表したり、表現が得意</div>
+            <div class="type-desc">表現チャレンジャー<br>なりきったり発表したり、表現するのが得意</div>
           </div>
         </div>
         <div class="type-card">
@@ -338,6 +367,22 @@
           </div>
         </div>
       </div>
+      <div class="note">
+        結果は、お子さんを4種類に決めるものではありません。今見えている「好き」や「得意」を、親子で話すきっかけとしてお使いください。
+      </div>
+    </section>
+
+    <section>
+      <h2>診断のあと、こんな会話が生まれます</h2>
+      <div class="conversation">
+        <p>「これ、好きやもんな」</p>
+        <p>「こんな時は集中できるんやね」</p>
+        <p>「今度これを一緒にやってみる？」</p>
+      </div>
+      <p class="lead" style="text-align: center; margin-bottom: 0;">
+        できないことを直すためではなく、<br>
+        その子らしい強みの芽を、親子で見つけるための診断です。
+      </p>
     </section>
 
     <div class="about">
@@ -347,7 +392,7 @@
       <div class="about-text">
         <h3>💕 のりこおばちゃんについて</h3>
         <p>
-          発達特性のある子を持つお母さんたちの「子育ての悩み」や「わが子の才能」を、
+          発達特性のある子を持つお母さんたちの「子育ての悩み」や「わが子らしさ」を、
           のりこおばちゃんの温かい視点で一緒に整理していきます。
         </p>
         <p>
@@ -359,7 +404,7 @@
 
     <div class="cta">
       <p class="cta-text">
-        さあ、お子さんの才能を発見しよう！
+        できないばかり見てしまう日に、この子らしい「好き」と「得意」を探してみませんか？
       </p>
       <a href="./diagnosis.html" class="cta-button">🎨 診断を始める</a>
     </div>
@@ -367,10 +412,10 @@
     <section>
       <h2>診断後の流れ</h2>
       <p style="font-size: 15px; line-height: 2; color: #555;">
-        <strong style="color: #0ea5a3;">1️⃣</strong> 診断ページで8つの質問に答える<br><br>
-        <strong style="color: #fb7185;">2️⃣</strong> お子さんのタイプが判定される<br><br>
+        <strong style="color: #0ea5a3;">1️⃣</strong> 診断ページで質問に答える<br><br>
+        <strong style="color: #fb7185;">2️⃣</strong> お子さんの強みの傾向が表示される<br><br>
         <strong style="color: #0ea5a3;">3️⃣</strong> LINE公式を友達追加して、タイプを送信<br><br>
-        <strong style="color: #fb7185;">4️⃣</strong> のりこおばちゃんからアドバイス画像が届く<br><br>
+        <strong style="color: #fb7185;">4️⃣</strong> のりこおばちゃんから声かけや関わり方のヒントが届く<br><br>
         <strong style="color: #0ea5a3;">5️⃣</strong> OpenChatで詳しく相談・整理ができる
       </p>
     </section>
